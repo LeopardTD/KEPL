@@ -1,0 +1,24 @@
+name: Test Before Merge
+
+on:
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v3
+
+    - name: Install HTMLHint
+      run: npm install -g htmlhint
+
+    - name: Install Stylelint
+      run: npm install -g stylelint stylelint-config-standard
+
+    - name: Check HTML
+      run: htmlhint "latihan.html"
+
+    - name: Check CSS
+      run: stylelint "**/*.css"
